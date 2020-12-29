@@ -41,14 +41,24 @@ def max_votes(states):
     return (days, votes)
 
 
+def test_time():
+    states_scores = calculate_states_scores(states_dict)
+    states_sorted_by_score_votes = sorted(states_scores,
+                                          key=itemgetter('score','votes'),
+                                          reverse=True)
+    return max_votes(states_sorted_by_score_votes)
+    
+
 def main():
     states_scores = calculate_states_scores(states_dict)
     states_sorted_by_score_votes = sorted(states_scores,
-                                          key=itemgetter('score','votes'), reverse=True)
+                                          key=itemgetter('score','votes'),
+                                          reverse=True)
     for state in states_sorted_by_score_votes:
         print(state)
     days, votes = max_votes(states_sorted_by_score_votes)
     print(f'\ndays left: {days}, votes: {votes}')            
+
 
 if __name__ in '__main__':
     main()
